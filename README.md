@@ -4,6 +4,27 @@ Sixteen skills for taking a consumer app from an idea to a store listing, on an 
 monorepo. Opinionated on purpose: it picks a stack, writes the decisions down, and refuses to start
 coding before it knows what it is building.
 
+## Installation
+
+Add the repository as a marketplace in Claude Code:
+
+```bash
+/plugin marketplace add exondus/shipyard-skill
+```
+
+Then install the plugin:
+
+```bash
+/plugin install shipyard
+```
+
+Or from your terminal:
+
+```bash
+claude plugin marketplace add exondus/shipyard-skill
+claude plugin install shipyard
+```
+
 ## What it does
 
 | Skill | Owns |
