@@ -9,8 +9,8 @@
       "name": "shipyard",
       "source": "./",
       "displayName": "Shipyard",
-      "description": "Sixteen skills for taking a consumer app from idea to store listing on an Expo + Next.js monorepo — research-first discovery, Clerk auth, Postgres/Supabase with RLS, premium UI that avoids AI slop, onboarding and paywall conversion, RevenueCat/Stripe/Paystack, push, localisation, ASO, observability, performance, cost control, store submission, and an adversarial self-review loop.",
-      "version": "0.2.0",
+      "description": "Seventeen skills for taking a consumer app from idea to store listing on an Expo + Next.js monorepo — research-first discovery, Clerk auth, Postgres/Supabase with RLS, premium UI that avoids AI slop, onboarding and paywall conversion, RevenueCat/Stripe/Paystack, push, localisation, ASO, observability, performance, cost control, store submission, an adversarial self-review loop, and visual verification that drives the running app on simulator, emulator or browser to prove what rendered.",
+      "version": "0.3.0",
       "author": {
         "name": "Lichaba"
       },
@@ -29,7 +29,10 @@
         "paystack",
         "aso",
         "app-store",
-        "google-play"
+        "google-play",
+        "accessibility",
+        "argent",
+        "playwright"
       ]
     }
   ]

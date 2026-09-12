@@ -34,9 +34,10 @@ Ask them in this order. The order matters — later questions are meaningless if
 ### 1. Does it run?
 
 Not "does it compile". Run it. Typecheck, lint, tests, and then the actual path a user takes through
-the change. For a screen, that means rendering it in a dev build. For an API change, that means
-calling it. For a migration, that means applying it to a real database and querying through the
-policy the app actually uses.
+the change. For a screen, that means rendering it in a dev build via `visual-verification` — a screen
+claimed to render without having been walked is an inferred result, not an executed one. For an API
+change, that means calling it. For a migration, that means applying it to a real database and querying
+through the policy the app actually uses.
 
 Report the **command you ran and its output**, not the diff. A diff is a claim; an execution is
 evidence. If you could not execute something, say so explicitly and label everything downstream of it

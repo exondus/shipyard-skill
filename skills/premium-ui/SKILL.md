@@ -29,7 +29,11 @@ punctuation.
 
 Read `references/slop-checklist.md` before designing and run it against the finished screen. It is a
 concrete list — colour, type, layout, icons, copy, states, motion — and it is checkable, which
-opinions about taste are not. **Three or more hits means redesign, not adjust.**
+opinions about taste are not. **Three or more hits means redesign, not adjust.** Grep catches most
+items from source; the defects that only exist once rendered — clipping at maximum text size, real
+contrast after compositing, a skeleton that does not match the layout it replaces, a target covered
+by a sibling — need `visual-verification` to walk the screen. That skill measures; `premium-ui` still
+owns the verdict.
 
 The five that catch the most work:
 

@@ -71,7 +71,7 @@ produced its artifact.
 | 3. Scaffold | a repo that builds on both platforms | `stack-scaffold` |
 | 4. Identity | sign-in working in a dev build, not Expo Go | `clerk-auth` |
 | 5. Data | schema + RLS policies + migrations | `postgres-data` |
-| 6. Interface | `docs/app/design-system.md` + the first real screen | `premium-ui` |
+| 6. Interface | `docs/app/design-system.md` + the first real screen, walked | `premium-ui`, then `visual-verification` |
 | 7. First-run | the onboarding flow and its instrumented funnel | `onboarding-flow` |
 | 8. Money | entitlements table, paywall, webhooks | `payments-paywalls` |
 | 8b. Return | push credentials, token storage, the reminders that bring people back | `push-engagement` |
@@ -83,8 +83,9 @@ produced its artifact.
 | 14. Gate | go / no-go | **`preflight-audit`** — the user's own skill |
 | 15. Submit | build, submit, respond to review | `store-submission` |
 
-Cross-cutting, invoked repeatedly rather than once: `self-review` after every vertical slice, and
-`cost-control` whenever a new paid service is about to be added or a bill is questioned.
+Cross-cutting, invoked repeatedly rather than once: `self-review` after every vertical slice,
+`visual-verification` on any slice a user can see, and `cost-control` whenever a new paid service is
+about to be added or a bill is questioned.
 
 **Before submission, hand off to `preflight-audit`.** That skill is the gate, not this plugin. Do not
 substitute a Shipyard checklist for it and do not run it as a formality — run its intake first if the
@@ -135,7 +136,8 @@ if it has consequences beyond one package, an ADR in `docs/app/decisions/`.
 2. State which phase the work belongs to and which skill owns it. Invoke that skill.
 3. Build the smallest **vertical slice** that a user could actually touch — schema through API through
    screen — rather than a horizontal layer. Horizontal layers hide integration failures until the end.
-4. Run `self-review` on the slice before moving on.
+4. Walk a user-visible slice with `visual-verification` first, then run `self-review` on the slice
+   before moving on — the review's first question asks for rendered evidence the walk is what produces.
 5. Append anything decided to `stack.md` or a new ADR. Update the task list.
 
 ## Things that waste the most time on these projects
