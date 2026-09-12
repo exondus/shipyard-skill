@@ -1,7 +1,7 @@
 {
   "name": "shipyard",
-  "version": "0.2.0",
-  "description": "Take a consumer app from idea to store listing: research-first product discovery, an Expo + Next.js monorepo, Clerk auth, Postgres/Supabase with RLS, premium UI that avoids AI slop, onboarding and paywall conversion, RevenueCat/Stripe/Paystack money, localisation from day one, ASO and growth, observability, performance, cost control, store submission, and a self-review loop that runs on every slice.",
+  "version": "0.3.0",
+  "description": "Take a consumer app from idea to store listing: research-first product discovery, an Expo + Next.js monorepo, Clerk auth, Postgres/Supabase with RLS, premium UI that avoids AI slop, onboarding and paywall conversion, RevenueCat/Stripe/Paystack money, localisation from day one, ASO and growth, observability, performance, cost control, store submission, a self-review loop that runs on every slice, and visual verification that drives the running app to prove what actually rendered.",
   "author": {
     "name": "Lichaba"
   },
@@ -15,7 +15,10 @@
     "stripe",
     "paystack",
     "aso",
-    "app-store"
+    "app-store",
+    "argent",
+    "playwright",
+    "accessibility"
   ],
   "license": "MIT",
   "homepage": "https://github.com/exondus/shipyard-skill",

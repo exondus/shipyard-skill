@@ -27,9 +27,12 @@ punctuation.
 
 ## The audit, first and last
 
-Read `references/slop-checklist.md` before designing and run it against the finished screen. It is a
-concrete list — colour, type, layout, icons, copy, states, motion — and it is checkable, which
-opinions about taste are not. **Three or more hits means redesign, not adjust.**
+Read `references/slop-checklist.md` before designing and run it against the finished screen. The
+checklist has a static half and a rendered half: grep finds the defaults, and `visual-verification`
+finds what only exists once rendered — clipping at maximum text size, real contrast after compositing, a
+skeleton that does not match the layout it replaces, a target covered by a sibling. `premium-ui` still
+owns the verdict. It is a concrete list — colour, type, layout, icons, copy, states, motion — and it
+is checkable, which opinions about taste are not. **Three or more hits means redesign, not adjust.**
 
 The five that catch the most work:
 

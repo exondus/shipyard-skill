@@ -1,6 +1,6 @@
 # Shipyard
 
-Sixteen skills for taking a consumer app from an idea to a store listing, on an Expo + Next.js
+Seventeen skills for taking a consumer app from an idea to a store listing, on an Expo + Next.js
 monorepo. Opinionated on purpose: it picks a stack, writes the decisions down, and refuses to start
 coding before it knows what it is building.
 
@@ -45,6 +45,7 @@ claude plugin install shipyard
 | `performance-security` | Measure, then fix: startup, frames, bundle, binary size, and the security checks that matter |
 | `cost-control` | What the free tiers really give you and which line grows first |
 | `self-review` | Adversarial review of every slice before it counts as done |
+| `visual-verification` | Runs the app and drives it — onboarding end to end, permissions denied, max text size — and reports what actually rendered |
 
 ## How it fits together
 
@@ -54,7 +55,9 @@ Skills read those files rather than re-deciding, which is what stops fifteen ski
 opinions.
 
 Work moves in vertical slices — schema through policy through API through screen through event — and
-`self-review` runs on each one before the next starts.
+`self-review` runs on each one before the next starts. Where a slice is user-visible,
+`visual-verification` drives the running app on a simulator, emulator or browser and produces the
+rendered evidence the review asks for, instead of reasoning about the interface from source.
 
 Before submission, Shipyard hands off to the **`preflight-audit`** skill, which is the actual go/no-go
 gate. `store-submission` prepares the material; `preflight-audit` decides whether it ships.
