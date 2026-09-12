@@ -3,16 +3,14 @@ name: visual-verification
 description: >
   Run the app, drive it through a real user flow, and capture what actually rendered — screenshots,
   accessibility trees, measured contrast, logs — so claims about the interface are evidence rather
-  than assertion. Use whenever a screen or flow needs to be checked as it renders rather than as it
-  is written: "walk the onboarding", "does this actually work", "check how it looks on device",
-  "screenshot the flow", "test with notifications denied", "does it survive 200% font scale", "is the
-  paywall disclosure visible", "prove the contrast", "verify the empty state", "run it and tell me
-  what you see". Use it automatically whenever `self-review` reaches the does-it-run question on a
-  user-visible slice, whenever `premium-ui` has finished a screen and the slop checklist needs the
-  rendered half, and whenever `preflight-audit` Phase 9 asks for a screen-reader walk, a maximum-text
-  screenshot or a contrast calculation. Drives iOS simulators and Android emulators via Argent, and
-  the web via Chrome DevTools MCP or Playwright. This skill produces evidence; it holds no design
-  opinions — `premium-ui` decides whether what it found is acceptable.
+  than assertion. Use whenever a screen or flow needs checking as it renders rather than as written:
+  "walk the onboarding", "check how it looks on device", "test with notifications denied", "does it
+  survive 200% font scale", "is the paywall disclosure visible", "prove the contrast", "run it and
+  tell me what you see". Use it automatically when `self-review` reaches the does-it-run question on
+  a user-visible slice, when `premium-ui` has finished a screen and needs it checked as rendered, and
+  when `preflight-audit` Phase 9 asks for a screen-reader walk, a maximum-text screenshot or a
+  contrast calculation. Drives iOS simulators and Android emulators via Argent, and the web via
+  Chrome DevTools MCP or Playwright. Produces evidence, not design opinions — `premium-ui` judges it.
 ---
 
 # Visual verification
@@ -156,6 +154,13 @@ python3 scripts/contrast.py shot.png --pair 24,190 24,220   # explicit foregroun
 
 Target sizes and text sizes come from the accessibility tree, which reports the rendered frame. Take
 them from there, not from the style.
+
+Measure a full-resolution screenshot. Argent downscales screenshots by default, and resampling blends
+thin text into its background, so contrast measured from a scaled image reads lower than what
+rendered. Mind the units: `--box` and `--pair` are image pixels, while the accessibility tree reports
+frames in points — multiply by the device scale (2 or 3 on iPhones, the screen density on Android).
+`--size` goes the other way: pass the text size in points or CSS pixels, not image pixels, because
+the thresholds are defined in those units.
 
 ## Evidence discipline
 

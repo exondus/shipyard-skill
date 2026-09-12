@@ -51,8 +51,8 @@ claude plugin install shipyard
 
 Everything a project decides lives in `docs/app/` in that project's repo — the brief, the locked
 stack, the design system, the analytics spec, the entitlement model, and one ADR per non-obvious call.
-Skills read those files rather than re-deciding, which is what stops fifteen skills becoming fifteen
-opinions.
+Skills read those files rather than re-deciding, which is what stops seventeen skills becoming
+seventeen opinions.
 
 Work moves in vertical slices — schema through policy through API through screen through event — and
 `self-review` runs on each one before the next starts. Where a slice is user-visible,

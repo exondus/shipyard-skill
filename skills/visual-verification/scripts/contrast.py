@@ -35,7 +35,7 @@ from collections import Counter
 try:
     from PIL import Image
 except ImportError:
-    sys.exit("Pillow is required: pip install --break-system-packages Pillow")
+    sys.exit("Pillow is required: python3 -m pip install Pillow")
 
 
 # ---------------------------------------------------------------- WCAG 2.1
@@ -96,27 +96,36 @@ def apca_lc(fg, bg) -> float:
 
 
 def apca_threshold(size_px: float, weight: int):
-    """Simplified reading of the APCA font lookup table. The real table is
-    two-dimensional across size and weight; these are the conservative bands
-    most often quoted. For anything marginal, check the full table."""
+    """Simplified reading of the APCA readability criterion. The real font
+    lookup table is two-dimensional across size and weight; these bands take
+    its body-text minimums (Lc 75 from 18px/400 or 14px/700, Lc 90 below that)
+    and never relax further. Under 14px the table can ask for more than Lc 90,
+    so check the full table for anything marginal."""
     bold = weight >= 700
     if size_px >= 36 or (bold and size_px >= 24):
         return 45.0, "large display text"
     if size_px >= 24 or (bold and size_px >= 18):
         return 60.0, "large text"
-    if size_px >= 14:
+    if size_px >= 18 or (bold and size_px >= 14):
         return 75.0, "body text"
-    return 90.0, "small text"
+    return 90.0, "small body text"
 
 
 # --------------------------------------------------------------- sampling
 
 def sample_box(img, box, min_share: float):
     x, y, w, h = box
+    if w <= 0 or h <= 0:
+        sys.exit("error: the box is empty — W and H must both be positive")
+    if x < 0 or y < 0 or x + w > img.width or y + h > img.height:
+        sys.exit(
+            "error: the box {},{},{},{} runs outside the {}x{} image. Pillow pads "
+            "out-of-bounds pixels with black, which would be measured as text. Box "
+            "coordinates are image pixels — on a 3x screenshot, multiply points by 3."
+            .format(x, y, w, h, img.width, img.height)
+        )
     crop = img.crop((x, y, x + w, y + h))
     total = crop.size[0] * crop.size[1]
-    if total == 0:
-        sys.exit("error: the box is empty — check the coordinates against the image size")
 
     counts = Counter({colour: n for n, colour in crop.getcolors(maxcolors=total) or []})
     if not counts:
@@ -143,6 +152,10 @@ def sample_box(img, box, min_share: float):
 
 
 def sample_pair(img, fg_pt, bg_pt):
+    for x, y in (fg_pt, bg_pt):
+        if not (0 <= x < img.width and 0 <= y < img.height):
+            sys.exit("error: point {},{} is outside the {}x{} image".format(
+                x, y, img.width, img.height))
     return {
         "fg": img.getpixel(tuple(fg_pt)),
         "bg": img.getpixel(tuple(bg_pt)),

@@ -52,18 +52,19 @@ where the render differed from what the previous walk produced.
 Paste the tool output, not a description of it.
 
 ```
-$ python3 scripts/contrast.py 07-paywall.png --box 24,412,327,22 --size 13
+$ python3 scripts/contrast.py 07-paywall.png --box 72,1236,981,66 --size 13 --label "Post-trial price line"
 Post-trial price line
   #8a8a8e on #ffffff   13px / 400
-  WCAG 2.1   3.27:1   (normal text — AA needs 4.5, AAA needs 7.0)   AA FAIL
-  APCA       Lc 51.4    (small text — needs |Lc| 90)   FAIL
+  sampled from 38 distinct colours — foreground 9.6% of box, background 71.4%
+  WCAG 2.1   3.44:1   (normal text — AA needs 4.5, AAA needs 7.0)   AA FAIL
+  APCA       Lc 61.9    (small body text — needs |Lc| 90)   FAIL
   FAIL
 ```
 
 | Measurement | Value | Threshold | Result |
 |---|---|---|---|
 | Smallest touch target (`<element>`) | 38 × 38 pt | 44 pt | FAIL |
-| Body contrast | 8.1:1 / Lc 78 | 4.5:1 / Lc 75 | pass |
+| Body contrast (17pt) | 9.74:1 / Lc 92.6 | 4.5:1 / Lc 90 | pass |
 | Paywall disclosure above fold at max text | — | all five items visible | FAIL |
 
 ---

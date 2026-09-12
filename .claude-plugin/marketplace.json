@@ -31,7 +31,8 @@
         "app-store",
         "google-play",
         "accessibility",
-        "argent"
+        "argent",
+        "playwright"
       ]
     }
   ]
